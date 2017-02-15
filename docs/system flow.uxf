@@ -48,12 +48,12 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>150</x>
-      <y>320</y>
+      <x>70</x>
+      <y>310</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
-    <panel_attributes>Embeded DB</panel_attributes>
+    <panel_attributes>Catalog DB</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -94,21 +94,32 @@
     <coordinates>
       <x>110</x>
       <y>240</y>
-      <w>110</w>
-      <h>100</h>
+      <w>30</w>
+      <h>90</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>90.0;80.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;70.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>200</x>
+      <x>290</x>
       <y>240</y>
-      <w>120</w>
-      <h>100</h>
+      <w>30</w>
+      <h>90</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;80.0;100.0;10.0</additional_attributes>
+    <additional_attributes>10.0;70.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>250</x>
+      <y>310</y>
+      <w>100</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>Pricing DB</panel_attributes>
+    <additional_attributes/>
   </element>
 </diagram>
