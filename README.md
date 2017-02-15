@@ -32,9 +32,13 @@
 # Build Instructions
 
 For building the ecommerce UI.
-$ cd ecommerce
-$ docker build -t ecommerce-ui:dev .
-$ docker run -d --name ecommerce-ui -p 4200:4200 ecommerce-ui:dev
-$ mvn clean packagedocker:build
 
-$ docker run -p 8080:8080 -t commerce/api-gateway
+1. $ cd ecommerce
+
+2. $ docker build -t ecommerce-ui:dev .
+
+3. $ docker run -d --name ecommerce-ui -p 4200:4200 ecommerce-ui:dev
+
+4. $ mvn clean packagedocker:build
+
+5. $ docker run -p 8080:8080 -t commerce/api-gateway
