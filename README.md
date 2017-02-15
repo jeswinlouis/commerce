@@ -42,3 +42,5 @@ For building the ecommerce UI.
 4. $ mvn clean packagedocker:build
 
 5. $ docker run -p 8080:8080 -t commerce/api-gateway
+
+6. mvn clean install (for pricing, catalog microservices)
