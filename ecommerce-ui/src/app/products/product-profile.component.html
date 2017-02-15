@@ -1,0 +1,7 @@
+<div class="jumbotron" *ngIf="product">
+    <h1> {{product.name}}</h1>
+    <h2> {{product.description}}</h2>
+
+
+    <input class="form-control" [(ngModel)]="product.name">
+</div>

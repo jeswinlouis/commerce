@@ -1,0 +1,47 @@
+<form #form="ngForm" (ngSubmit)="onSubmit()" *ngIf="active">
+
+    <div class="form-group" [ngClass]="{ 'has-error': name.invalid && name.touched}">
+        <input type="text" class="form-control" name="name" placeholder="Product Name" required [(ngModel)]="newProduct.name" #name="ngModel">
+
+        <span class="help-block" *ngIf="name.invalid && name.touched">Name is required</span>
+    </div>
+
+    <div class="form-group" [ngClass]="{ 'has-error': description.invalid && description.touched}">
+        <input type="text" class="form-control" name="description" placeholder="Product Description" required [(ngModel)]="newProduct.description" #description="ngModel">
+
+        <span class="help-block" *ngIf="description.invalid && description.touched">Description is required</span>
+
+    </div>
+
+    <div class="form-group">
+        <label>Country</label>
+        <select [(ngModel)]="newProduct.countryId" class="form-control" name="countryId" #countryId="ngModel">
+            <option *ngFor="let country of countries"
+                    value= {{country.id}}>{{country.country}}
+            </option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Stores</label>
+        <select [(ngModel)]="newProduct.storeId" class="form-control" name="storeId" #countryId="ngModel">
+            <option *ngFor="let store of stores"
+                    value= {{store.id}}>{{store.name}}
+            </option>
+        </select>
+    </div>
+
+
+    <div class="form-group">
+        <label>Categories</label>
+        <select [(ngModel)]="newProduct.categoryId" class="form-control" name="categoryId" #countryId="ngModel">
+            <option *ngFor="let category of categories"
+                    value= {{category.id}}>{{category.name}}
+            </option>
+        </select>
+    </div>
+
+
+
+    <button type="submit " class="btn btn-lg btn-block btn-primary " [disabled]="form.invalid ">Create Product</button>
+</form>

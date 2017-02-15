@@ -16,7 +16,6 @@ gateway:
    - discovery
    - configserver
    - catalog
-   - pricing
 catalog:
   image: commerce/catalog
   links:
@@ -28,9 +27,7 @@ pricing:
    - discovery
    - configserver
 commerceui:
-  image: commerce/commerce-ui
+  build: ecommerce-ui
   ports:
      - "4200:4200"
-  links:
-   - discovery
 - configserver

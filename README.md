@@ -10,9 +10,15 @@
 7. Common Authentication & Authorization services ensures the security requirements
 8. Logging, Auditing and Monitoring infrastructure is managed as seperate services
 9. Strategy pattern to be used to adding various pricing methology is used to add different approaches for the product pricing.
- 
 
 
+#Pre-requisite
+1. Java 8
+2. Docker
+3. Docker Compose
+4. nodejs
+5. angular cli
+6. git
 
 #System flow diagram
 
@@ -22,3 +28,13 @@
 
 
 ![alt tag](https://github.com/jeswinlouis/commerce/blob/master/docs/domainModel.jpg?raw=true)
+
+# Build Instructions
+
+For building the ecommerce UI.
+$ cd ecommerce
+$ docker build -t ecommerce-ui:dev .
+$ docker run -d --name ecommerce-ui -p 4200:4200 ecommerce-ui:dev
+$ mvn clean packagedocker:build
+
+$ docker run -p 8080:8080 -t commerce/api-gateway
