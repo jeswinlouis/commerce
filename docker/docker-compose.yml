@@ -1,0 +1,36 @@
+discovery:
+  image: commerce/discovery
+  ports:
+   - "8761:8761"
+configserver:
+  image: commerce/config
+  ports:
+   - "8888:8888"
+  links:
+   - discovery
+gateway:
+  image: commerce/api-gateway
+  ports:
+   - "8080:8080"
+  links:
+   - discovery
+   - configserver
+   - catalog
+   - pricing
+catalog:
+  image: commerce/catalog
+  links:
+   - discovery
+   - configserver
+pricing:
+  image: commerce/pricing
+  links:
+   - discovery
+   - configserver
+commerceui:
+  image: commerce/commerce-ui
+  ports:
+     - "4200:4200"
+  links:
+   - discovery
+- configserver

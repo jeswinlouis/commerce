@@ -1,0 +1,14 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: commerce
+zuul:
+  routes:
+    commerce:
+      url: http://localhost:8888
+
+
+ribbon:
+  eureka:
+    enabled: false
