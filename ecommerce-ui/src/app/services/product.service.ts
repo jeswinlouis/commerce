@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
-import { Product } from '../model/product';
+import { Product, CreateProduct } from '../model/product';
 import 'rxjs/Rx';
 
 @Injectable()
@@ -18,10 +18,14 @@ export class ProductService {
       return product$;
   }
 
-  save(product: Product) : Observable<Response>{
+  save(product: CreateProduct) : Observable<Product>{
     console.log(" product to save " + JSON.stringify(product));
-    return this.http
-      .post(this.baseUrl + "/products", JSON.stringify(product));
+    let productResponse$ = this.http
+      .post(this.baseUrl + "/products", product).map((response:Response) => response.json());
+
+      console.log("the response " + JSON.stringify(productResponse$));
+      return productResponse$;
+
   }
 
 }

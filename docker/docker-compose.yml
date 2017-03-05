@@ -1,33 +1,40 @@
 discovery:
-  image: commerce/discovery
+  build: ../discovery
   ports:
    - "8761:8761"
 configserver:
-  image: commerce/config
+  build: ../config
   ports:
    - "8888:8888"
   links:
    - discovery
+  environment:
+    - "EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery:8761/eureka/"  
 gateway:
-  image: commerce/api-gateway
+  build: ../api-gateway
   ports:
    - "8080:8080"
   links:
    - discovery
    - configserver
    - catalog
+  environment:
+    - "EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery:8761/eureka/" 
 catalog:
-  image: commerce/catalog
+  build: ../catalog
   links:
    - discovery
    - configserver
+  environment:
+    - "EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery:8761/eureka/" 
 pricing:
-  image: commerce/pricing
+  build: ../pricing
   links:
    - discovery
    - configserver
+  environment:
+    - "EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery:8761/eureka/" 
 commerceui:
-  build: ecommerce-ui
+  build: ../ecommerce-ui
   ports:
      - "4200:4200"
-- configserver

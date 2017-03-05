@@ -44,6 +44,8 @@ public class Product {
 
     }
 
+    public long getId() { return id; }
+
     public String getSku() {
         return sku;
     }
@@ -59,6 +61,10 @@ public class Product {
 
     public Store getStore() {
         return store;
+    }
+
+    public String toString() {
+        return sku + "  " + name + " desc: " + description;
     }
 
 }

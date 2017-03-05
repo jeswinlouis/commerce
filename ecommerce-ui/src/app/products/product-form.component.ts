@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { Product } from '../model/product';
+import { CreateProduct } from '../model/product';
 import { Country } from '../model/country';
 import { Category } from '../model/category';
 import { Store } from '../model/store';
@@ -49,7 +49,7 @@ export class ProductFormComponent implements OnInit {
 
     @Output() productCreated = new EventEmitter();
 
-    newProduct: Product = new Product();
+    newProduct: CreateProduct = new CreateProduct();
     active: boolean = true;
 
 
@@ -58,7 +58,7 @@ export class ProductFormComponent implements OnInit {
         this.productService.save(this.newProduct);
 
         this.productCreated.emit( { product: this.newProduct });
-        this.newProduct = new Product();
+        this.newProduct = new CreateProduct();
 
         this.active = false;
         setTimeout(() => 

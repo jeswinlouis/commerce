@@ -6,7 +6,7 @@ spring:
 zuul:
   routes:
     commerce:
-      url: http://localhost:8888
+      url: http://localhost:8989
 
 
 ribbon:

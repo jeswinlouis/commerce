@@ -5,16 +5,19 @@
 
     <groupId>com.ecommerce</groupId>
     <artifactId>ecommerce</artifactId>
-    <version>0.1.0-SNAPSHOT</version>
+    <version>0.1.0</version>
     <packaging>pom</packaging>
 
     <modules>
-        <module>catalog</module>
+        
         <module>discovery</module>
         <module>api-gateway</module>
-        <module>pricing</module>
+       
         <module>config</module>
-        <module>commerce-ui</module>
+        <module>catalog</module>
+         <module>pricing</module>
+
+        <!--<module>commerce-ui</module>-->
     </modules>
 
     <parent>
@@ -31,33 +34,8 @@
         <docker.plugin.version>0.4.13</docker.plugin.version>
     </properties>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
 
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-starter-parent</artifactId>
-                <version>Camden.SR4</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
+
 
     <repositories>
         <repository>

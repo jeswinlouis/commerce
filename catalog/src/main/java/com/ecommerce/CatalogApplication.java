@@ -9,17 +9,24 @@ import com.ecommerce.repository.CountryRepository;
 import com.ecommerce.repository.ProductRepository;
 import com.ecommerce.repository.StoreRepository;
 import com.github.javafaker.Faker;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.Bean;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 @SpringBootApplication
 @EnableDiscoveryClient
 public class CatalogApplication {
+
+    private static final Logger LOG =LoggerFactory.getLogger(CatalogApplication.class);
 
 	public static void main(String[] args) {
 
@@ -39,9 +46,20 @@ public class CatalogApplication {
 		return (String... args) -> {
 			Faker faker = new Faker();
 
-			for(int i=0; i< 10; i++) {
 
-				String storeName = faker.commerce().department();
+            List<Country> countryList = loadCountries(countryRepository);
+
+
+            countryList.forEach(System.out::println);
+
+            LOG.debug("countries size : " + countryList.size());
+            List<Store> stores = initializeStores(storeRepository, faker);
+
+            List<Category> categories = initializeCategories(categoryRepository, faker);
+
+
+            for(int i=0; i< 10; i++) {
+
 				String productName = faker.commerce().productName();
 				String material = faker.commerce().material();
 
@@ -49,33 +67,94 @@ public class CatalogApplication {
 
 				String description  = productName + " " +  material + " " + faker.superhero().name();
 
-				String[] countryList = { "North America", "Germany", "South Africa"};
-
-				int selectedPosition = new Random().ints(0,countryList.length).findAny().getAsInt();
-
-				System.out.println(" sku " + sku + " store " + storeName + " productname "
-						+ productName + " material " + material
-				+ " country " + countryList[selectedPosition] ) ;
 
 
-				Country country = new Country(countryList[selectedPosition]);
+				int selectedPosition = new Random().ints(0,countryList.size()).findAny().getAsInt();
 
-				countryRepository.save(country);
+				int randomStorePosition = new Random().ints(0,stores.size()).findAny().getAsInt();
+
+                int randomCategoryPosition = new Random().ints(0,categories.size()).findAny().getAsInt();
 
 
-				Store store = new Store(storeName);
+				Store randomStore = stores.get(randomStorePosition);
 
-				storeRepository.save(store);
+                Country randomCountry = countryList.get(selectedPosition);
 
-				Category category = new Category(material);
+                Category randomCategory = categories.get(randomCategoryPosition);
 
-				categoryRepository.save(category);
 
-				productRepository.save(new Product(sku, productName, description, category, store, country));
+
+				LOG.debug(" sku : " + sku + " store : " + randomStore + " productname :"
+						+ description + " category : " + randomCategory
+				+ " country " + randomCountry ); ;
+
+				Product p = new Product(sku, productName, description, randomCategory, randomStore, randomCountry);
+
+
+				productRepository.save(p);
+
+				LOG.debug(" Product ID : " + p.getId());
+
 
 			}
 		};
 
 	}
+
+    private List<Store> initializeStores(StoreRepository storeRepository, Faker faker) {
+
+	    List<Store> stores = new ArrayList<>();
+
+
+        for(int i=0; i< 10; i++) {
+            String storeName = faker.commerce().department();
+            Store store = new Store(storeName);
+            stores.add(store);
+            Store newStore = storeRepository.save(store);
+
+            LOG.debug("Store ID " + store.getId());
+        }
+
+        return  stores;
+    }
+
+
+    private List<Category> initializeCategories(CategoryRepository categoryRepository, Faker faker) {
+
+        List<Category> categories = new ArrayList<>();
+
+
+        for(int i=0; i< 10; i++) {
+            String material = faker.commerce().material();
+            Category category = new Category(material);
+            categories.add(category);
+            categoryRepository.save(category);
+
+        }
+
+        return  categories;
+    }
+
+
+    private List<Country> loadCountries(CountryRepository countryRepository) {
+
+	    List countries = new ArrayList();
+
+	    String countryArray[] = { "North America", "Germany", "South Africa"};
+
+
+        List<String> countryList = Arrays.asList(countryArray);
+
+
+        countryList.forEach(country -> {
+            Country s = new Country(country);
+            countryRepository.save(s);
+
+            countries.add(s);
+        });
+
+        return countries;
+
+    }
 
 }

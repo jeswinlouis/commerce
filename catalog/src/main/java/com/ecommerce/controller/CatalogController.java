@@ -1,18 +1,14 @@
 package com.ecommerce.controller;
 
-import com.ecommerce.domain.Category;
-import com.ecommerce.domain.Country;
-import com.ecommerce.domain.Product;
-import com.ecommerce.domain.Store;
+import com.ecommerce.domain.*;
 import com.ecommerce.service.CommonEntityService;
 import com.ecommerce.service.ProductService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by jeswin on 11/02/17.
@@ -21,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class CatalogController {
 
-
+    private static final Logger LOG = LoggerFactory.getLogger(CatalogController.class);
 
     @Autowired
     private CommonEntityService commonEntityService;
@@ -57,7 +53,7 @@ public class CatalogController {
 
     @GetMapping("/categories")
     public Page<Category> getCategories(Pageable pageable) {
-        System.out.println("Calling categories");
+        LOG.debug("Calling categories");
 
             return commonEntityService.getAllCategories(pageable);
      }
@@ -65,6 +61,7 @@ public class CatalogController {
     @GetMapping("/products")
     public Page<Product> getProducts(Pageable pageable) {
 
+        LOG.debug("Calling service layer get Products methods");
         return productService.getAllProducts(pageable);
     }
 
@@ -82,9 +79,15 @@ public class CatalogController {
     }
 
 
-    @PostMapping("products")
-    public Product addProduct(Product product) {
-        return productService.addProduct(product);
+    @PostMapping("/products")
+    public Product addProduct(@RequestBody ProductRequest productRequest) {
+       Product newProduct =  productService.addProduct(productRequest);
+       System.out.println("Creating new product " + newProduct);
+
+       LOG.debug("Newly created product " + newProduct );
+
+       return newProduct;
+
     }
 
 }

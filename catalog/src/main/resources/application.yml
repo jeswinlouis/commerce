@@ -1,2 +1,7 @@
 server:
-  port: 8888
+  port: 8989
+eureka:
+  client:
+    enabled: false
+logging:
+  level.: DEBUG

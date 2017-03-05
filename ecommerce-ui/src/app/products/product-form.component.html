@@ -1,5 +1,13 @@
 <form #form="ngForm" (ngSubmit)="onSubmit()" *ngIf="active">
 
+
+    <div class="form-group" [ngClass]="{ 'has-error': sku.invalid && sku.touched}">
+        <input type="text" class="form-control" name="sku" placeholder="SKU" required [(ngModel)]="newProduct.sku" #sku="ngModel">
+
+        <span class="help-block" *ngIf="sku.invalid && sku.touched">SKU is required</span>
+    </div>
+
+
     <div class="form-group" [ngClass]="{ 'has-error': name.invalid && name.touched}">
         <input type="text" class="form-control" name="name" placeholder="Product Name" required [(ngModel)]="newProduct.name" #name="ngModel">
 
@@ -13,9 +21,15 @@
 
     </div>
 
+    <div class="form-group" [ngClass]="{ 'has-error': amount.invalid && amount.touched}">
+        <input type="text" class="form-control" name="amount" placeholder="Amount " required [(ngModel)]="newProduct.amount" #amount="ngModel">
+
+        <span class="help-block" *ngIf="amount.invalid && amount.touched">Amount is required</span>
+    </div>
+
     <div class="form-group">
         <label>Country</label>
-        <select [(ngModel)]="newProduct.countryId" class="form-control" name="countryId" #countryId="ngModel">
+        <select [(ngModel)]="newProduct.country" class="form-control" name="country" #country="ngModel">
             <option *ngFor="let country of countries"
                     value= {{country.id}}>{{country.country}}
             </option>
@@ -24,7 +38,7 @@
 
     <div class="form-group">
         <label>Stores</label>
-        <select [(ngModel)]="newProduct.storeId" class="form-control" name="storeId" #countryId="ngModel">
+        <select [(ngModel)]="newProduct.store" class="form-control" name="store" #store="ngModel">
             <option *ngFor="let store of stores"
                     value= {{store.id}}>{{store.name}}
             </option>
@@ -34,7 +48,7 @@
 
     <div class="form-group">
         <label>Categories</label>
-        <select [(ngModel)]="newProduct.categoryId" class="form-control" name="categoryId" #countryId="ngModel">
+        <select [(ngModel)]="newProduct.category" class="form-control" name="category" #category="ngModel">
             <option *ngFor="let category of categories"
                     value= {{category.id}}>{{category.name}}
             </option>

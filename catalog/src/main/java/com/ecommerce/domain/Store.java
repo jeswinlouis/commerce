@@ -23,6 +23,10 @@ public class Store {
 
     }
 
+    public Store(long id) {
+        this.id = id;
+    }
+
     public Store(String store) {
         this.name = store;
     }
@@ -31,5 +35,11 @@ public class Store {
         return name;
     }
 
+    public String toString() {
+        return name;
+    }
 
+    public long getId() {
+        return id;
+    }
 }

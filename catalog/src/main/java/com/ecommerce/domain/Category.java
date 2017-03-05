@@ -25,11 +25,29 @@ public class Category {
 
 
     Category() {}
+
+    public Category(long id) {
+        this.id = id;
+    }
     public Category(String name) {
 
         this.name = name;
 
     }
+
+
+    public long getId() {
+        return id;
+    }
+
+    public URI getImage() {
+        return image;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
 
     public String getName() {
         return this.name;
@@ -46,6 +64,10 @@ public class Category {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String toString() {
+        return name;
     }
 
 
