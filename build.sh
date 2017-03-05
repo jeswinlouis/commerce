@@ -1,0 +1,11 @@
+cd discovery
+mvn spring-boot:run
+cd ..
+cd api-gateway
+mvn spring-boot:run
+cd ..
+cd  catalog
+mvn spring-boot:run
+cd ..
+cd ecommerce-ui
+npm start

@@ -1,5 +1,6 @@
 package com.ecommerce.domain;
 
+import com.ecommerce.domain.api.PricingType;
 import org.junit.Before;
 import org.junit.Test;
 

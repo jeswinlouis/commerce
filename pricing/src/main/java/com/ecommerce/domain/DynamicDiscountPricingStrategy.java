@@ -1,5 +1,7 @@
 package com.ecommerce.domain;
 
+import com.ecommerce.domain.api.PricingType;
+
 import java.util.Random;
 
 /**

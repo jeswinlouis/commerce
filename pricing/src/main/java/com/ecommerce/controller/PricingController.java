@@ -1,7 +1,7 @@
 package com.ecommerce.controller;
 
 import com.ecommerce.domain.ProductPrice;
-import com.ecommerce.domain.ProductPriceRequest;
+import com.ecommerce.domain.api.ProductPriceRequest;
 import com.ecommerce.service.ProductPricingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
