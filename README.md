@@ -35,12 +35,27 @@ For building the ecommerce UI.
 
 1. $ cd ecommerce
 
-2. $ docker build -t ecommerce-ui:dev .
+2. $ cd discovery
 
-3. $ docker run -d --name ecommerce-ui -p 4200:4200 ecommerce-ui:dev
+3. mvn spring-boot:run
 
-4. $ mvn clean packagedocker:build
+4. cd ..
 
-5. $ docker run -p 8080:8080 -t commerce/api-gateway
+5. cd api-gateway
 
-6. mvn clean install (for pricing, catalog microservices)
+6. mvn spring-boot:run
+
+7. cd ..
+
+8. cd catalog
+
+9. mvn spring-boot:run
+
+10. cd ..
+
+11. cd ecommerce-ui
+
+12. npm start
+
+
+Access the application from the URL http://localhost:4200/
